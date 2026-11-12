@@ -35,6 +35,7 @@ export function scan(w: World, c: Creature): void {
     const prev = c.seen[id] ?? -2;
     if (o.novelTick >= 0 && prev < o.novelTick) {
       const ev = emit(w, 'notice', c.id, o.x, o.y, { objId: id, kind: o.kind }, o.causeEvent ? [o.causeEvent] : []);
+      w.fx.push({ type: 'notice', x: c.x, y: c.y, tick: w.tick, id: c.id });
       const sal = clamp((o.kind === 'lumen' ? 0.85 : 0.55) + 0.2 * c.traits.curiosity);
       const m = findMemory(c, 'novelty', { objId: id });
       if (m) { m.salience = sal; m.x = o.x; m.y = o.y; m.tick = w.tick; m.sourceEvents = [ev]; }

@@ -20,6 +20,7 @@ export function observeBehavior(w: World, c: Creature, actorId: string, behavior
   const known = findMemory(c, 'behavior', { behaviorId });
   if (known && known.count > 4 && rnd(w) < 0.65) return null;
   const ev = emit(w, 'observe', c.id, ax, ay, { actor: actorId, behaviorId, rootId: b.rootId }, [cause]);
+  if (actorId === 'hand') w.fx.push({ type: 'notice', x: c.x, y: c.y, tick: w.tick, id: c.id });
   let m = findMemory(c, 'behavior', { behaviorId });
   if (!m) m = addMemory(w, c, { kind: 'behavior', actor: actorId, behaviorId, x: b.x, y: b.y, salience: 0.5 });
   else { m.count++; m.tick = w.tick; m.actor = actorId; if (!m.actors.includes(actorId)) m.actors.push(actorId); }

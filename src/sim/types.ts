@@ -144,7 +144,7 @@ export type PlayerAction =
   | { kind: 'lumen'; x: number; y: number }
   | { kind: 'catchup'; ticks: number; capped: boolean };
 
-export interface Fx { type: 'splash' | 'call' | 'dance' | 'hand' | 'eat' | 'drop'; x: number; y: number; tick: number; id?: string }
+export interface Fx { type: 'splash' | 'call' | 'dance' | 'hand' | 'eat' | 'drop' | 'notice'; x: number; y: number; tick: number; id?: string }
 
 export interface World {
   version: number;
